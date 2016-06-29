@@ -13,18 +13,6 @@ gulp.task('default', ['watch']);
 // Run "gulp server"
 gulp.task('server', ['serve', 'watch']);
 
-// Minify jQuery Plugins: Run manually with: "gulp squish-jquery"
-gulp.task('squish-jquery', function () {
-    return gulp.src('assets/js/libs/**/*.js')
-        .pipe(plugins.uglify({
-            output: {
-                'ascii_only': true
-            }
-        }))
-        .pipe(plugins.concat('jquery.plugins.min.js'))
-        .pipe(gulp.dest('build'));
-});
-
 // Minify Custom JS: Run manually with: "gulp build-js"
 gulp.task('build-js', function () {
     return gulp.src('assets/js/*.js')
@@ -68,17 +56,16 @@ gulp.task('build-css', function () {
 
 // Default task
 gulp.task('watch', function () {
-    gulp.watch('assets/js/libs/**/*.js', ['squish-jquery']);
     gulp.watch('assets/js/*.js', ['build-js']);
     gulp.watch('assets/less/**/*.less', ['build-css']);
 });
 
-// Folder "/" serving at http://localhost:8888
+// Folder "/" serving at http://localhost:8100
 // Should use Livereload (http://livereload.com/extensions/)
 gulp.task('serve', function () {
-    var server = plugins.serve.static('/', 8888);
+    var server = plugins.serve.static('/', 8100);
     server.start();
-    gulp.watch(['build/*'], function (file) {
+    gulp.watch(['build/*', 'index.html'], function (file) {
         server.notify.apply(server, [file]);
     });
 });
