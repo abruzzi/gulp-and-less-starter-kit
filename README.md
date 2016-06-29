@@ -28,7 +28,7 @@ A super clean and easy to use starter kit for using Gulp and Less. This should h
     
 After, run
 
-    $ gulp
+    $ gulp server
     
 ...if you need a local server. Folder **build** serving at [http://localhost:8100](http://localhost:8100)
 
